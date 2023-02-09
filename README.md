@@ -1,24 +1,41 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Task-Tracker-VueJS
 
-Things you may want to cover:
+# Table of Contents
 
-* Ruby version
+<ul>
+  <li>General Info</li>
+  <li>Technologies</li>
+  <li>Setup</li>
+  <li>Features</li>
+</ul>
+ 
+# General Info
+ 
+Simple Task Tracker.  View and Add Tasks, Delete Tasks and set or remove reminders.
+ 
+# Technologies
+ 
+<ul>
+<li>VueJS</li>
+<li>CSS</li>
+<li>JSON Server</li>
+</ul>
 
-* System dependencies
+# Setup
+ 
+To run this project: <ol>
+ 
+  <li>Clone the repo to your computer</li>
+  <li>Run npm run backend first</li>
+  <li>Then run npm run serve in a seperate terminal and Go to http://localhost:8080/ and start exploring the app!</li>
+  </ol>
+ 
+# Features
+ 
+<ul>
+  <li>Add a Task</li>
+  <li>Set or remove a reminder</li>
+  <li>Delete a Task</li>
+</ul>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
