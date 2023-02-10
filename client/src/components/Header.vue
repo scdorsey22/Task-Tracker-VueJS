@@ -4,7 +4,7 @@
         <Button
         v-show="homePage" 
         @btn-click="$emit('toggle-add-task')"
-        :color="showAddTask ? 'red' : 'success'" 
+        :color="showAddTask ? 'red' : 'green'" 
         :text="showAddTask ? 'Close' : 'Add Task'"
         />
     </header>

@@ -21,7 +21,7 @@
       <label>Set Reminder</label>
       <input type="checkbox" v-model="reminder" name="reminder"/>
     </v-container>
-    <v-btn color="success" type="submit" value="Save Task" block>Save Task</v-btn>
+    <v-btn color="green" type="submit" value="Save Task" block>Save Task</v-btn>
   </v-form>
   </v-card>
 </v-sheet>
