@@ -1,14 +1,30 @@
 <template>
-  <div class="container">
-    <Header title="Task Tracker" @toggle-add-task="toggleAddTask" :showAddTask="showAddTask"/>
-    <router-view :showAddTask="showAddTask"></router-view>
-    <Footer />
-  </div>
+  <v-app class="container" :theme='theme'>
+    <v-app-bar>
+      <v-toolbar-title>Todo App</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        @click="toggleTheme"
+      >Toggle Theme</v-btn>
+    </v-app-bar>
+    <v-main>
+      <v-container>
+        <Header @toggle-add-task="toggleAddTask" :showAddTask="showAddTask"/>
+        <router-view :showAddTask="showAddTask"></router-view>
+      </v-container>
+    </v-main>
+    <v-container>
+      <Footer />
+    </v-container>
+  </v-app>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import { useTheme } from 'vuetify'
+
+
 
 
 export default {
@@ -16,6 +32,14 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  setup () {
+    const theme = useTheme()
+
+    return {
+      theme,
+      toggleTheme: () => theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+    }
   },
   data() {
     return {
@@ -31,7 +55,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap\|Material+Icons');
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,17 +65,16 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 .container {
-  max-width: 500px;
+  max-width: 900px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  
   padding: 30px;
   border-radius: 5px;
 }
 .btn {
   display: inline-block;
-  background: #000;
   color: #fff;
   border: none;
   padding: 10px 20px;

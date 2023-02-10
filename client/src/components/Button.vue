@@ -1,11 +1,11 @@
 <template>
-    <button 
+    <v-btn 
         @click="onClick()" 
-        :style="{background: color}" 
-        class="btn"
+        :color="color"
+        block
         >
         {{ text }}
-    </button>
+    </v-btn>
 </template>
 
 <script>
