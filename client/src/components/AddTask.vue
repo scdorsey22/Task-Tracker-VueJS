@@ -1,29 +1,40 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
-    <div class="form-control">
-      <label>Task</label>
-      <input type="text" v-model="text" name="text" placeholder="Add Task" />
-    </div>
-    <div class="form-control">
-      <label>Day & Time</label>
-      <input
+<v-container>
+<v-sheet width="700" class="mx-auto">
+  <v-card>
+  <v-form @submit="onSubmit" class="add-form">
+    <v-text-field 
+        type="text" 
+        v-model="text" 
+        name="text" 
+        placeholder="Add Task" 
+        required>
+    </v-text-field>
+    <v-text-field 
         type="text"
-        v-model="day"
+        v-model="date"
         name="day"
         placeholder="Add Day & Time"
-      />
-    </div>
-    <div class="form-control form-control-check">
+        required>
+    </v-text-field>
+    <v-container class="form-control form-control-check">
       <label>Set Reminder</label>
-      <input type="checkbox" v-model="reminder" name="reminder" />
-    </div>
-
-    <input type="submit" value="Save Task" class="btn btn-block" />
-  </form>
+      <input type="checkbox" v-model="reminder" name="reminder"/>
+    </v-container>
+    <v-btn color="success" type="submit" value="Save Task" block>Save Task</v-btn>
+  </v-form>
+  </v-card>
+</v-sheet>
+</v-container>
 </template>
 
 
 <script>
+import {
+  mdiCheckboxBlankOutline,
+  mdiCheckboxMarked,
+  mdiCheckboxMarkedOutline,
+} from '@mdi/js'
 
 
 export default {
@@ -33,6 +44,9 @@ export default {
             text: '',
             day: '',
             reminder: false,
+             mdiCheckboxBlankOutline,
+            mdiCheckboxMarked,
+            mdiCheckboxMarkedOutline,
         }
     },
     methods: {
@@ -47,13 +61,13 @@ export default {
             const newTask ={
                 id: Math.floor(Math.random() * 100000),
                 text: this.text,
-                day: this.day,
+                date: this.date,
                 reminder: this.reminder,
             }
            this.$emit('add-task', newTask)
 
             this.text = ''
-            this.day = ''
+            this.date = ''
             this.reminder = 'false'
         }
     }
@@ -65,7 +79,7 @@ export default {
   margin-bottom: 40px;
 }
 .form-control {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .form-control label {
   display: block;
@@ -73,9 +87,9 @@ export default {
 .form-control input {
   width: 100%;
   height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
+  margin: 1px;
+  padding: 1px 1px;
+  font-size: 20px;
 }
 .form-control-check {
   display: flex;
@@ -83,10 +97,10 @@ export default {
   justify-content: space-between;
 }
 .form-control-check label {
-  flex: 1;
+  flex: 10;
 }
 .form-control-check input {
-  flex: 2;
+  flex: 1;
   height: 20px;
 }
 </style>
