@@ -44,13 +44,7 @@ const myCustomDarkTheme = {
 const vuetify = createVuetify({
   components,
   directives,
-  theme: {
-    defaultTheme: 'myCustomLightTheme',
-    themes: {
-      myCustomLightTheme,
-      myCustomDarkTheme
-    }
-  }
+
 })
 
 createApp(App)
