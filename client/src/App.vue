@@ -3,9 +3,9 @@
     <v-app-bar>
       <v-toolbar-title>Todo App</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
+      <v-btn icon
         @click="toggleTheme"
-      >Toggle Theme</v-btn>
+      ><v-icon>{{ theme.dark ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon></v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -22,7 +22,8 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import { useTheme } from 'vuetify'
+import { createVuetify } from 'vuetify';
+import { ref } from 'vue';
 
 
 
@@ -34,51 +35,47 @@ export default {
     Footer,
   },
   setup () {
-    const theme = useTheme()
+    const theme = ref(null);
+    const vuetify = createVuetify({
+      theme: {
+        themes: {
+          light: {
+            primary: '#00E676',
+            secondary: '#03DAC6',
+            accent: '#82B1FF',
+            error: '#B00020',
+            warning: '#FB8C00',
+            info: '#2196F3',
+            success: '#4CAF50',
+          },
+          dark: {
+            primary: '#00E676',
+            secondary: '#03DAC6',
+            accent: '#82B1FF',
+            error: '#B00020',
+            warning: '#FB8C00',
+            info: '#2196F3',
+            success: '#4CAF50',
+            dark: true,
+          },
+        },
+      },
+    });
 
-    const myCustomLightTheme = {
-    dark: false,
-    colors: {
-      background: '#FAFAFA',
-      surface: '#FFFFFF',
-      primary: '#00E676',
-      'primary-darken-1': '#F5F5F5',
-      secondary: '#03DAC6',
-      'secondary-darken-1': '#F5F5F5',
-      error: '#B00020',
-      info: '#2196F3',
-      success: '#4CAF50',
-      warning: '#FB8C00',
-    }
-  }
+const toggleTheme = () => {
+      const newTheme = vuetify.theme.dark ? 'light' : 'dark';
+      vuetify.theme.currentTheme = newTheme;
+    };
 
-  // Dark Theme
-const myCustomDarkTheme = {
-  dark: true,
-  colors: {
-    background: '#212121',
-    surface: '#424242',
-    primary: '#00E676',
-    'primary-darken-1': '#1D1D1D',
-    secondary: '#03DAC6',
-    'secondary-darken-1': '#1D1D1D',
-    error: '#B00020',
-    info: '#2196F3',
-    success: '#4CAF50',
-    warning: '#FB8C00',
-  }
-};
-
- const toggleTheme = () => {
-      const newTheme = theme.global.current.value.dark ? myCustomLightTheme : myCustomDarkTheme;
-      theme.global.set(newTheme)
-      }
+    // Set the initial value of the theme ref
+    theme.value = vuetify.theme;
 
     return {
       theme,
-      toggleTheme
-    }
+      toggleTheme,
+    };
   },
+
   data() {
     return {
       showAddTask: false
